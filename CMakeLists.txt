@@ -26,8 +26,8 @@ userver_setup_environment()
 
 # Common sources
 add_library(${PROJECT_NAME}_objs OBJECT
-    src/hello.hpp
-    src/hello.cpp
+    src/ping.hpp
+    src/ping.cpp
 )
 target_link_libraries(${PROJECT_NAME}_objs PUBLIC userver::postgresql)
 
@@ -39,18 +39,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}_objs)
 
 # Unit Tests
 add_executable(${PROJECT_NAME}_unittest
-    src/hello_test.cpp
+    src/ping_test.cpp
 )
 target_link_libraries(${PROJECT_NAME}_unittest PRIVATE ${PROJECT_NAME}_objs userver::utest)
 add_google_tests(${PROJECT_NAME}_unittest)
-
-
-# Benchmarks
-add_executable(${PROJECT_NAME}_benchmark
-    src/hello_benchmark.cpp
-)
-target_link_libraries(${PROJECT_NAME}_benchmark PRIVATE ${PROJECT_NAME}_objs userver::ubench)
-add_google_benchmark_tests(${PROJECT_NAME}_benchmark)
 
 
 # Functional Tests
