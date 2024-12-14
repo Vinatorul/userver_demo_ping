@@ -25,11 +25,11 @@ class Ping final : public userver::server::handlers::HttpHandlerBase {
 
   std::string HandleRequestThrow(
       const userver::server::http::HttpRequest& request,
-      userver::server::request::RequestContext&) const override {
+      userver::server::request::RequestContext&) override {
 
     counter_++;
 
-    return std::stoi(counter_);
+    return std::stoi(counter_.load());
   }
 
 
