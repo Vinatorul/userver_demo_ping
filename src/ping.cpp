@@ -1,5 +1,7 @@
 #include "ping.hpp"
 
+#include <atomic>
+
 #include <fmt/format.h>
 
 #include <userver/clients/dns/component.hpp>
@@ -24,9 +26,14 @@ class Ping final : public userver::server::handlers::HttpHandlerBase {
   std::string HandleRequestThrow(
       const userver::server::http::HttpRequest& request,
       userver::server::request::RequestContext&) const override {
-    return "pong";
+
+    counter_++;
+
+    return std::stoi(counter_);
   }
 
+
+  std::atomic<int> counter_ = 0;
 };
 
 }  // namespace
