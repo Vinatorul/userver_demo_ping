@@ -27,13 +27,13 @@ class Ping final : public userver::server::handlers::HttpHandlerBase {
       const userver::server::http::HttpRequest& request,
       userver::server::request::RequestContext&) const override {
 
-    // counter_++;
+    counter_++;
 
     return std::stoi(counter_.load());
   }
 
 
-   std::atomic<int> counter_ = 0;
+  mutable std::atomic<int> counter_ = 0;
 };
 
 }  // namespace
