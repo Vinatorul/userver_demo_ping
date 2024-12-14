@@ -55,13 +55,5 @@ components_manager:
             method: POST                  # It will only reply to POST requests.
             task_processor: main-task-processor  # Run it on CPU bound task processor
 
-        postgres-db-1:
-            dbconnection: $dbconnection
-            dbconnection#env: DB_CONNECTION
-            blocking_task_processor: fs-task-processor
-            dns_resolver: async
-            sync-start: true
-            connlimit_mode: manual
-
         dns-client:
             fs-task-processor: fs-task-processor
