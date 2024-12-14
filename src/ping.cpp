@@ -29,7 +29,7 @@ class Ping final : public userver::server::handlers::HttpHandlerBase {
 
     counter_++;
 
-    return std::stoi(counter_.load());
+    return std::to_string(counter_);
   }
 
 
