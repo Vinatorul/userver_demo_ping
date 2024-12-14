@@ -25,7 +25,7 @@ class Ping final : public userver::server::handlers::HttpHandlerBase {
 
   std::string HandleRequestThrow(
       const userver::server::http::HttpRequest& request,
-      userver::server::request::RequestContext&) override {
+      userver::server::request::RequestContext&) const override {
 
     counter_++;
 
@@ -33,7 +33,7 @@ class Ping final : public userver::server::handlers::HttpHandlerBase {
   }
 
 
-  std::atomic<int> counter_ = 0;
+  mutable std::atomic<int> counter_ = 0;
 };
 
 }  // namespace
